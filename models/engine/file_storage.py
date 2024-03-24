@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+"""Storage Module"""
+import json
+import os
+from models.base_model import BaseModel
+
+class FileStorage:
+    """ file storage class """
+    __file_path = "file.json"
+    __objects = {}
+    
+    def new(self, obj):
+        """sets in __objects the obj"""
+        obj_cn = obj.__class__.__name__
+        Filestorage["{}.{}".format(obj_cn, obj.id)] = obj
+
+    def all(self):
+        """the dictionary __objects"""
+        return FileStorage.__objects
+
+    def save(save):
+        """serializes __objects to the JSON file"""
+        objs = Filestorage.__objects
+        my_dict = {}
+        for obj in objs.key:
+            my_dict[key] = objs[obj].to_dict()
+
+        with open(FileStorage.__file_path, "w",encoding="utf-8") as f:
+            json.dump(my_dict, f)
+
+    def reload(self):
+        """deserializes the JSON file to __objects"""
+        if os.path.isfile(Filestorage.__file_path):
+            with open (File_Storage.__file_path, "r", encoding="utf-8") as f:
+                    my_dict = json.load(f)
+                    for key, value in my_dict.items():
+                        cn, o = key.split(',')
+                        cl = eval(cn)
+                        inst = cl(**value)
+                        FileStorage.__objects[key] = inst
