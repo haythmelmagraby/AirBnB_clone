@@ -20,6 +20,24 @@ class TestBasicModel(unittest.TestCase):
         self.assertIn(base_model.id, str(base_model))
         self.assertIn(str(base_model.__dict__), str(base_model))
 
+    def test_save(self):
+        """ Test save """
+        base_model = BaseModel()
+        first_update_at = base_model.updated_at
+        second_update_at = base_model.save()
+        self.assertNotEqual(second_update_at, first_update_at)
+
+    def test_to_dict(self):
+        base_model = BaseModel()
+        base_dict = base_model.to_dict()
+        self.assertIsInstance(base_dict, dict)
+        self.assertEqual(base_dict['id'], base_model.id)
+        self.assertEqual(base_dict['created_at'],
+                         base_model.created_at.isoformat())
+        self.assertEqual(base_dict['updated_at'],
+                         base_model.updated_at.isoformat())
+        self.assertEqual(base_dict['__class__'], 'BaseModel')
+
 
 if __name__ == "__main__":
     unittest.main()
