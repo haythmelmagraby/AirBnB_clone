@@ -6,10 +6,20 @@ from datetime import datetime
 
 class BaseModel:
     """ BaseModel Class """
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+    def __init__(self, *args, **kwargs):
+        tf = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    setattr(self, key, value)
+                elif key == "updated_at" or key == "created_at":
+                    setattr(self, key, datetime.strptime(value, tf))
+                else:
+                    continue
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
 
     def __str__(self):
         class_name = self.__class__.__name__
