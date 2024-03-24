@@ -2,9 +2,14 @@
 """console module"""
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand consol class"""
     prompt = "(hbnb)"
+
+    def emptyline(self):
+        """dont execute anything"""
+        pass
 
     def do_EOF(self, line):
         'EOF command to exit the program'
@@ -16,4 +21,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
