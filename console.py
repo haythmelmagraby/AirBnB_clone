@@ -9,7 +9,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand consol class"""
     prompt = "(hbnb)"
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = {"BaseModel": BaseModel, "User": User, "Place": Place, "State": State, "City": City, "Amenity": Amenity, "Review": Review}
 
     def emptyline(self):
         """dont execute anything"""
