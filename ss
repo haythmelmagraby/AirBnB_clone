@@ -2,12 +2,12 @@
 """console module"""
 import cmd
 from models.base_model import BaseModel
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
+from models.User import User
+from models.Place import Place
+from models.State import State
+from models.City import City
+from models.Amenity import Amenity
+from models.Review import Review
 from models import storage
 
 
@@ -121,5 +121,3 @@ class HBNBCommand(cmd.Cmd):
                     obj.save()
 
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
