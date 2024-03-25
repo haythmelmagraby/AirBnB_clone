@@ -2,19 +2,21 @@
 """console module"""
 import cmd
 from models.base_model import BaseModel
-from models.User import User
-from models.Place import Place
-from models.State import State
-from models.City import City
-from models.Amenity import Amenity
-from models.Review import Review
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand consol class"""
     prompt = "(hbnb)"
-    classes = {"BaseModel": BaseModel, "User": User, "Place": Place, "State": State, "City": City, "Amenity": Amenity, "Review": Review}
+    classes = {"BaseModel": BaseModel, "User": User,
+               "Place": Place, "State": State, "City": City,
+               "Amenity": Amenity, "Review": Review}
 
     def emptyline(self):
         """dont execute anything"""
@@ -120,4 +122,21 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, name, val)
                     obj.save()
 
+    def default(self, line):
+        'default to run class name .all'
+        if line is None or line == "":
+            return
+        splitted = line.split('.')
+        print(splitted)
+        if splitted[0] not in self.classes:
+            return
+        ins = storage.all()[splitted[0]].values()
+        print(ins)
+#        if splitted[1] in avm_dict.keys():
+#            return avm_dict[splited[1]]("{}.{}".format(splitted[0],''))
+#        else:
+#            return False
 
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()

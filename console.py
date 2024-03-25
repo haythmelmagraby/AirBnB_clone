@@ -122,6 +122,17 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, name, val)
                     obj.save()
 
+    def default(self, line):
+        'default to run class name .all'
+        if line is None or line == "":
+            return
+        splitted = line.split('.')
+        print(splitted)
+        if splitted[0] not in self.classes:
+            return
+        ins = storage.all()[splitted[0]]
+        print(ins)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
