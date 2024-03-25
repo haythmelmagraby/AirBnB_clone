@@ -20,7 +20,7 @@ class FileStorage:
         """the dictionary __objects"""
         return FileStorage.__objects
 
-    def save(save):
+    def save(self):
         """serializes __objects to the JSON file"""
         objs = FileStorage.__objects
         my_dict = {}
@@ -41,4 +41,3 @@ class FileStorage:
                         cl = eval(cn)
                         inst = cl(**value)
                         FileStorage.__objects[key] = inst
-        self.save()
