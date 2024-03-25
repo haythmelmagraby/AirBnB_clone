@@ -2,13 +2,14 @@
 """console module"""
 import cmd
 from models.base_model import BaseModel
+from models.base_model import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand consol class"""
     prompt = "(hbnb)"
-    classes = {"BaseModel": BaseModel}
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def emptyline(self):
         """dont execute anything"""

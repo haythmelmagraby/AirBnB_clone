@@ -3,6 +3,7 @@
 import json
 import os
 import datetime
+from models.user import User
 
 
 class FileStorage:
